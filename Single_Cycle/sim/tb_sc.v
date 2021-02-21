@@ -12,7 +12,7 @@ module tb_sc();
 		clk = 1'b0;
 		#1
 		rst = 1'b0;
-		repeat(10) @(negedge clk);
+		repeat(12) @(negedge clk);
 		$finish;
 		end
 	
