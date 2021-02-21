@@ -27,6 +27,10 @@ module Instr_Mem(PC,instr);
 		i_mem[17] = 8'h08;
 		i_mem[18] = 8'h00;
 		i_mem[19] = 8'h00;
+		i_mem[20] = 8'h00;
+		i_mem[21] = 8'h00;
+		i_mem[22] = 8'h00;
+		i_mem[23] = 8'h00;
 		end 
 		
 	assign instr = {i_mem[PC+3],i_mem[PC+2],i_mem[PC+1],i_mem[PC]};
