@@ -27,3 +27,12 @@ This repository contains the processors made using Verilog as a part of the cour
 # 5 Stage Pipelined Processor:
 
 Currently In Progress
+
+To Do:
+<ul>
+                <li> EX/MEM Pipeline Register </li>
+                <li> MEM/WB Pipeline Register </li>
+                <li> EX Stage </li>
+                <li> MEM and WB Stage </li>
+                <li> Testing The Modules </li>
+</ul>
