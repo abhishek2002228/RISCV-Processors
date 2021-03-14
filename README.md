@@ -22,3 +22,8 @@ This repository contains the processors made using Verilog as a part of the cour
 
 
   Information about the instruction formats can be found [here](https://metalcode.eu/2019-12-06-rv32i.html)
+
+
+# 5 Stage Pipelined Processor:
+
+Currently In Progress
