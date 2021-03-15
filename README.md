@@ -2,7 +2,7 @@
 
 This repository contains the processors made using Verilog as a part of the course CS F342 Computer Architecture at BITS Pilani, Hyderabad Campus
 
-# Single Cycle: 
+# [Single Cycle](https://github.com/abhishek2002228/RISCV-Processors/tree/main/Single_Cycle): 
 *Supports the following instructions as of now*
                 <ul>
                 <li> *LW (I-type OPCODE: 0110011)* </li>
@@ -24,7 +24,7 @@ This repository contains the processors made using Verilog as a part of the cour
   Information about the instruction formats can be found [here](https://metalcode.eu/2019-12-06-rv32i.html)
 
 
-# 5 Stage Pipelined Processor:
+# [5 Stage Pipelined Processor](https://github.com/abhishek2002228/RISCV-Processors/tree/main/Pipelined%20RISCV%20Processor):
 
 Currently In Progress
 
