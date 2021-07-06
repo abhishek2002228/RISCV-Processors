@@ -8,7 +8,7 @@ module reg_file(rd_reg1, rd_reg2, wr_reg, wr_data, DAT1, DAT2, reg_wr, rst, clk)
 	reg [31:0] reg_num [31:0];
 	integer i;
 	
-	always @(posedge rst, posedge clk)
+	always @(posedge rst, negedge clk)//update regfile on negedge
 		begin
 		if(rst)
 			begin

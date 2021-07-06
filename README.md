@@ -23,16 +23,14 @@ This repository contains the processors made using Verilog as a part of the cour
 
   Information about the instruction formats can be found [here](https://metalcode.eu/2019-12-06-rv32i.html)
 
+  <img src="/Single_Cycle/Single_Cycle.png">
+
 
 # [5 Stage Pipelined Processor](https://github.com/abhishek2002228/RISCV-Processors/tree/main/Pipelined%20RISCV%20Processor):
 
-Currently In Progress
 
-To Do:
-<ul>
-                <li> EX/MEM Pipeline Register </li>
-                <li> MEM/WB Pipeline Register </li>
-                <li> EX Stage </li>
-                <li> MEM and WB Stage </li>
-                <li> Testing The Modules </li>
-</ul>
+5 Stage pipelined processor with Forwarding Logic and Hazard Detection.
+
+Supports the same instructions as the Single Cycle Processor above.
+
+<img src="/Pipelined%20RISCV%20Processor/pipelined.png">

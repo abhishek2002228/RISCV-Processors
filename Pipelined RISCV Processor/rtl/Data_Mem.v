@@ -10,7 +10,7 @@ module Data_mem(addr,wr_data,rd_data,mem_read,mem_write, clk, rst);
 		begin
 		if(rst)
 			begin
-			for(i = 0; i < (2^32) ; i = i + 1)
+			for(i = 0; i < (2**32) ; i = i + 1)
 				d_mem[i] <= 8'b0;
 			end
 		else
