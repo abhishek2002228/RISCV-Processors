@@ -23,12 +23,11 @@ module Instr_Mem(PC,instr);
 		i_mem[13] = 8'h21;
 		i_mem[14] = 8'h00;
 		i_mem[15] = 8'h01;
-		i_mem[16] = 8'h63;
-		i_mem[17] = 8'h08;
-		i_mem[18] = 8'h00;
+		i_mem[16] = 8'hA3;
+		i_mem[17] = 8'h28;
+		i_mem[18] = 8'h30;
 		i_mem[19] = 8'h00;
 		end 
-		
 	assign instr = {i_mem[PC+3],i_mem[PC+2],i_mem[PC+1],i_mem[PC]};
 	
 endmodule

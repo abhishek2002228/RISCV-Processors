@@ -1,7 +1,7 @@
-module exmem(clk, rst, ex_control_sig, ex_pc, ex_alu, ex_dat2, ex_rd,
+module exmem(flush, clk, rst, ex_control_sig, ex_pc, ex_alu, ex_dat2, ex_rd,
 mem_control_sig, mem_pc, mem_alu, mem_dat2, mem_rd);
 
-    input wire clk, rst;
+    input wire clk, rst, flush;
     input wire [9:0] ex_control_sig;
     output reg [9:0] mem_control_sig;
     input wire [31:0] ex_pc, ex_dat2;
@@ -13,7 +13,7 @@ mem_control_sig, mem_pc, mem_alu, mem_dat2, mem_rd);
 
     always @(posedge clk, posedge rst)
     begin
-        if(rst)
+        if(rst || flush)
         begin
             mem_control_sig <= 0;
             mem_pc <= 0;

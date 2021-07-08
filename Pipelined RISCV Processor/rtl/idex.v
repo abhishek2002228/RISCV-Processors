@@ -1,7 +1,7 @@
-module idex(clk, rst, id_control_sig, id_pc, id_dat1, id_dat2, id_imm, id_rs1, id_rs2, id_rd,
+module idex(flush, clk, rst, id_control_sig, id_pc, id_dat1, id_dat2, id_imm, id_rs1, id_rs2, id_rd,
  ex_control_sig, ex_pc, ex_dat1, ex_dat2, ex_imm, ex_rs1, ex_rs2, ex_rd);
 
-    input wire clk, rst;
+    input wire clk, rst, flush;
     input wire [13:0] id_control_sig;
     output reg [13:0] ex_control_sig;
     input wire [31:0] id_pc, id_imm, id_dat1, id_dat2;
@@ -11,7 +11,7 @@ module idex(clk, rst, id_control_sig, id_pc, id_dat1, id_dat2, id_imm, id_rs1, i
 
     always @(posedge clk, posedge rst)
     begin
-        if(rst)
+        if(rst || flush)
         begin
             ex_control_sig <= 0;
             ex_pc <= 0;

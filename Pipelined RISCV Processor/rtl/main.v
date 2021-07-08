@@ -27,8 +27,9 @@ module main(clk, rst, interrupt);
 
     wire ifid_write;
     wire [31:0] id_pc, id_instr;
+    wire flush = pc_src;
 
-    ifid if_id(clk, rst, ifid_write, pc_reg, instr, id_pc, id_instr);
+    ifid if_id(flush, clk, rst, ifid_write, pc_reg, instr, id_pc, id_instr);
 
     wire [4:0] id_rs1, id_rs2, id_rd;
     wire [6:0] id_opcode, id_funct7;
@@ -62,7 +63,7 @@ module main(clk, rst, interrupt);
     wire [31:0] ex_pc, ex_imm, ex_dat1, ex_dat2;
     wire [4:0] ex_rs1, ex_rs2, ex_rd;
 
-    idex id_ex(clk, rst, id_control_sig, id_pc, id_dat1, id_dat2, id_imm, id_rs1, id_rs2, id_rd,
+    idex id_ex(flush, clk, rst, id_control_sig, id_pc, id_dat1, id_dat2, id_imm, id_rs1, id_rs2, id_rd,
  ex_control_sig, ex_pc, ex_dat1, ex_dat2, ex_imm, ex_rs1, ex_rs2, ex_rd);
 
     wire [1:0] forwardA, forwardB;
@@ -106,7 +107,7 @@ module main(clk, rst, interrupt);
     wire [4:0] mem_rd; 
 
 
-    exmem ex_mem(clk, rst, ex_control_sig[9:0], ex_br_addr, ex_alu, alu_in21, ex_rd, mem_control_sig, mem_br_addr, mem_alu, mem_dat2, mem_rd);
+    exmem ex_mem(flush, clk, rst, ex_control_sig[9:0], ex_br_addr, ex_alu, alu_in21, ex_rd, mem_control_sig, mem_br_addr, mem_alu, mem_dat2, mem_rd);
 
     assign pc_src = mem_alu[32] && mem_control_sig[0];
 

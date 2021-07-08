@@ -12,7 +12,7 @@ module Imm_Gen(instr, Imm_out, Imm_sel);
 			I_type: Imm_intermediate = instr[31:20];
 			S_type: Imm_intermediate = {instr[31:25],instr[11:7]};
 			B_type: Imm_intermediate = {instr[31],instr[7],instr[30:25],instr[11:8]};
-			default: Imm_intermediate = 12'bx;
+			default: Imm_intermediate = 12'b0;
 		endcase
 		
 	assign Imm_out = {{20{Imm_intermediate[11]}}, Imm_intermediate[11:0]};		
