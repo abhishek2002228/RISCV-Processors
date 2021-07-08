@@ -33,4 +33,6 @@ This repository contains the processors made using Verilog as a part of the cour
 
 Supports the same instructions as the Single Cycle Processor above.
 
+The design supports the branch-not-taken branch prediction policy.
+
 <img src="/Pipelined%20RISCV%20Processor/pipelined.png">
