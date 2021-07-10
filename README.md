@@ -36,3 +36,7 @@ Supports the same instructions as the Single Cycle Processor above.
 The design supports the branch-not-taken branch prediction policy.
 
 <img src="/Pipelined%20RISCV%20Processor/pipelined.png">
+
+## To Do
+
+1) Implement a better branch predictor for the pipelined processor 
