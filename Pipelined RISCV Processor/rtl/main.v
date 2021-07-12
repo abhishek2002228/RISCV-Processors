@@ -17,10 +17,11 @@ module main(clk, rst, interrupt);
     input wire clk, rst, interrupt;
 
     wire pc_write, pc_src;//pc_write*
-    wire [31:0] pc_next, pc_reg, mem_br_addr, pc_incr, instr;
+    wire [31:0] pc_next_temp, pc_reg, mem_br_addr, pc_incr, instr, pc_next;
 
     assign pc_incr = pc_reg + 4;
-    assign pc_next = pc_src ? mem_br_addr : pc_incr;
+    assign pc_next_temp = pc_src ? mem_br_addr : pc_incr;
+    assign pc_next = interrupt ? 32'h80000180 : pc_next_temp; //interrupt handler addr
 
     PC program_counter(clk, rst, pc_write, pc_next, pc_reg);
     Instr_Mem I_mem(pc_reg, instr);
@@ -28,8 +29,9 @@ module main(clk, rst, interrupt);
     wire ifid_write;
     wire [31:0] id_pc, id_instr;
     wire flush = pc_src;
+    wire interr_flush = flush | interrupt;
 
-    ifid if_id(flush, clk, rst, ifid_write, pc_reg, instr, id_pc, id_instr);
+    ifid if_id(interr_flush, clk, rst, ifid_write, pc_reg, instr, id_pc, id_instr);
 
     wire [4:0] id_rs1, id_rs2, id_rd;
     wire [6:0] id_opcode, id_funct7;
@@ -63,7 +65,7 @@ module main(clk, rst, interrupt);
     wire [31:0] ex_pc, ex_imm, ex_dat1, ex_dat2;
     wire [4:0] ex_rs1, ex_rs2, ex_rd;
 
-    idex id_ex(flush, clk, rst, id_control_sig, id_pc, id_dat1, id_dat2, id_imm, id_rs1, id_rs2, id_rd,
+    idex id_ex(interr_flush, clk, rst, id_control_sig, id_pc, id_dat1, id_dat2, id_imm, id_rs1, id_rs2, id_rd,
  ex_control_sig, ex_pc, ex_dat1, ex_dat2, ex_imm, ex_rs1, ex_rs2, ex_rd);
 
     wire [1:0] forwardA, forwardB;
@@ -105,6 +107,15 @@ module main(clk, rst, interrupt);
     wire [31:0] mem_dat2;
     wire [32:0] mem_alu;
     wire [4:0] mem_rd; 
+    reg [31:0] EPC;
+
+    always @(posedge clk, posedge rst)
+    begin
+        if(rst)
+            EPC <= 0;
+        else if(interrupt)
+            EPC <= ex_pc;
+    end
 
 
     exmem ex_mem(flush, clk, rst, ex_control_sig[9:0], ex_br_addr, ex_alu, alu_in21, ex_rd, mem_control_sig, mem_br_addr, mem_alu, mem_dat2, mem_rd);
